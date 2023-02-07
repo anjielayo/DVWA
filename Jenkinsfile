@@ -1,3 +1,4 @@
+#!groovy
 node {
 
   stage('SCM') {
