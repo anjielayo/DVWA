@@ -1,23 +1,35 @@
-
-node {
-
-  stage('SCM') {
-    checkout scm
-
-  }
-  stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarQube';
-    withSonarQubeEnv('Sonarqube') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
+pipeline {
+    agent any 
+    stages {
+        stage('Static Analysis') {
+            steps {
+                echo 'Run the static analysis to the code' 
+            }
+        }
+        stage('Compile') {
+            steps {
+                echo 'Compile the source code' 
+            }
+        }
+        stage('Security Check') {
+            steps {
+                echo 'Run the security check against the application' 
+            }
+        }
+        stage('Run Unit Tests') {
+            steps {
+                echo 'Run unit tests from the source code' 
+            }
+        }
+        stage('Run Integration Tests') {
+            steps {
+                echo 'Run only crucial integration tests from the source code' 
+            }
+        }
+        stage('Publish Artifacts') {
+            steps {
+                echo 'Save the assemblies generated from the compilation' 
+            }
+        }
     }
-  }
-}
-
-stage("Quality Gate"){
-  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-    if (qg.status != 'OK') {
-      error "Pipeline aborted due to quality gate failure: ${qg.status}"
-    }
-  }
 }
