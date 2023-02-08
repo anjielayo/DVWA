@@ -1,16 +1,10 @@
-pipeline {
-  agent any
-  stages {
-    stage('SonarQube analysis') {
-      steps {
-        script {
-          // requires SonarQube Scanner 2.8+
-          scannerHome = tool 'SonarQube'
-        }
-        withSonarQubeEnv('Sonarqube') {
-          sh "${scannerHome}/bin/sonar-scanner"
-        }
-      }
+node {
+    stage 'Checkout'
+
+    checkout scm
+
+    stage 'Gradle Static Analysis'
+    withSonarQubeEnv {
+        sh "./gradlew clean sonarqube"
     }
-  }
-}
+}    
