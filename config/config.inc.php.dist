@@ -18,14 +18,14 @@ $_DVWA = array();
 $_DVWA[ 'db_server' ]   = '127.0.0.1';
 $_DVWA[ 'db_database' ] = 'dvwa';
 $_DVWA[ 'db_user' ]     = 'dvwa';
-$_DVWA[ 'db_password' ] = 'Ub0nt0$$$';
+$_DVWA[ 'db_password' ] = 'password';
 $_DVWA[ 'db_port'] = '3306';
 
 # ReCAPTCHA settings
 #   Used for the 'Insecure CAPTCHA' module
 #   You'll need to generate your own keys at: https://www.google.com/recaptcha/admin
-$_DVWA[ 'recaptcha_public_key' ]  = '6Lf8zngkAAAAAHclrFrSLryic-AGkmJKpSt6Iixn';
-$_DVWA[ 'recaptcha_private_key' ] = '6Lf8zngkAAAAAOrlO9X1O_D-wZg8mgT_V-QInsZz';
+$_DVWA[ 'recaptcha_public_key' ]  = '';
+$_DVWA[ 'recaptcha_private_key' ] = '';
 
 # Default security level
 #   Default value for the security level with each session.
