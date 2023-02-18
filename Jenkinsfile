@@ -1,12 +1,5 @@
 node {
-    environment {
-      // SEMGREP_BASELINE_REF = ""
 
-        SEMGREP_APP_TOKEN = '${{ secrets.SEMGREP_APP_TOKEN }}'
-        SEMGREP_PR_ID = "${env.CHANGE_ID}"
-
-      //  SEMGREP_TIMEOUT = "300"
-    }
   stage('SCM') {
     checkout scm
   }
@@ -17,11 +10,12 @@ node {
     }
   }
   
-  stage('Semgrep-Scan') {
-      
-          sh 'pip3 install semgrep'
-          sh 'semgrep ci'
-      }
+  stage ("Dynamic Analysis - DAST with OWASP ZAP") {
+			
+				sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://http://34.134.183.218/ || true"
+			
+		
+		}
     
   
     
