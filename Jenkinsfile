@@ -2,7 +2,7 @@ node {
     environment {
       // SEMGREP_BASELINE_REF = ""
 
-        SEMGREP_APP_TOKEN = 'cf7734121f06fa24f28b324a7ecc67124b914e82dea64050d8158ff885cc531e'
+        SEMGREP_APP_TOKEN = '${{ secrets.SEMGREP_APP_TOKEN }}'
        
 
       //  SEMGREP_TIMEOUT = "300"
