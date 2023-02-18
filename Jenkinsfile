@@ -19,8 +19,7 @@ node {
   
   stage('Semgrep-Scan') {
       
-          sh 'pip3 install semgrep'
-          sh 'semgrep login'
+         
           sh 'semgrep ci'
       }
     
