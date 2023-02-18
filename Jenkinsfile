@@ -20,7 +20,7 @@ node {
   stage('Semgrep-Scan') {
       
          
-          sh 'semgrep ci --config'
+          sh 'sudo semgrep ci'
       }
     
   
