@@ -1,4 +1,12 @@
 node {
+    environment {
+      // SEMGREP_BASELINE_REF = ""
+
+        SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
+       
+
+      //  SEMGREP_TIMEOUT = "300"
+    }
   stage('SCM') {
     checkout scm
   }
@@ -8,15 +16,14 @@ node {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
-   stage('Snyk Test') {
+  
+      stage('Semgrep-Scan') {
       
-        echo 'Testing...'
-        snykSecurity(
-          snykInstallation: 'snyktool',
-          snykTokenId: 'first-snyk-token',
-          // place other parameters here
-        )
+          sh 'pip3 install semgrep'
+          sh 'semgrep ci'
       }
+    
+  
     
 
         
