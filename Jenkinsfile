@@ -3,7 +3,7 @@ node {
       // SEMGREP_BASELINE_REF = ""
 
         SEMGREP_APP_TOKEN = '${{ secrets.SEMGREP_APP_TOKEN }}'
-       
+        SEMGREP_PR_ID = "${env.CHANGE_ID}"
 
       //  SEMGREP_TIMEOUT = "300"
     }
@@ -19,7 +19,7 @@ node {
   
   stage('Semgrep-Scan') {
       
-         
+          sh 'pip3 install semgrep'
           sh 'semgrep ci'
       }
     
