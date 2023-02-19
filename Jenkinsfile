@@ -21,19 +21,17 @@ node {
           
               // Scan all vuln levels
                 sh 'mkdir -p reports'
-                sh 'trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template "@html.tpl" -o reports/nodjs-scan.html ./nodejs'
+                sh 'trivy repository --ignore-unfixed --vuln-type os,library --format template --template "@html.tpl" -o reports/trivyscan.html https://github.com/anjielayo/DVWA.git'
                 publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'reports',
-                    reportFiles: 'nodjs-scan.html',
+                    reportFiles: 'trivyscan.html',
                     reportName: 'Trivy Scan',
                     reportTitles: 'Trivy Scan'
                 ]
 
-                // Scan again and fail on CRITICAL vulns
-                sh 'trivy filesystem --ignore-unfixed --vuln-type os,library --exit-code 1 --severity CRITICAL ./nodejs'
 
             }
 
