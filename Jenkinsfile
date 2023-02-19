@@ -15,7 +15,10 @@ node {
 		
 		}
 
-  
+	stage("Publish Reports"){
+	
+	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'report.html', reportName: 'My Report', reportTitles: '', useWrapperFileDirectly: true])
+	}
     
 
         
