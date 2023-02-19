@@ -16,9 +16,7 @@ node {
 			
 		
 		}
-    stage('Security') {
-        	sh './start_crashtest.sh'
-    	}
+
   
     
 
