@@ -12,7 +12,7 @@ node {
   
   stage ("Dynamic Analysis - DAST with OWASP ZAP") {
 	  			
-				sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"	
+				sh "docker run -t owasp/zap2docker-stable zap-full-scan.py -t http://34.134.183.218/ || true"	
 	  			
 		
 		}
