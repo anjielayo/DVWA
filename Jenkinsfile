@@ -33,12 +33,7 @@ node {
 
             }
 
-	stage('Archery Scan'){
-		sh "docker run -it -p 8000:8000 -v http://34.134.183.218:/archerysec archerysec/archerysec:latest"
-	
-	
-	
-	}
+
 	
 	
 
