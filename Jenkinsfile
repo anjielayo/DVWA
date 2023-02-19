@@ -34,7 +34,7 @@ node {
             }
 
 	stage('Dalfox Scan'){
-		docker run -it hahwul/dalfox:latest /app/dalfox url http://34.134.183.218/
+		sh 'docker run -it hahwul/dalfox:latest /app/dalfox url http://34.134.183.218/'
 	
 	}
 	
