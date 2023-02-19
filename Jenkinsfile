@@ -19,7 +19,7 @@ node {
           
               // Scan all vuln levels
                 sh 'mkdir -p reports'
-                sh 'trivy repository https://github.com/anjielayo/DVWA.git'
+                sh 'trivy repo https://github.com/anjielayo/DVWA'
                 publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
