@@ -18,7 +18,15 @@ node {
 
 	stage ("Publish Reports"){
 	       sh "mkdir -p reports"
-	       publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: 'report.html', reportName: 'HTMLReport', reportTitles: '', useWrapperFileDirectly: true])
+	       publishHTML([allowMissing: false, 
+			    alwaysLinkToLastBuild: false, 
+			    includes: '**/*',
+			    keepAll: true, 
+			    reportDir: 'reports/', 
+			    reportFiles: 'report.html', 
+			    reportName: 'HTMLReport', 
+			    reportTitles: '', 
+			    useWrapperFileDirectly: true])
 	       
 	       }
 
