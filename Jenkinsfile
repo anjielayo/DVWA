@@ -19,7 +19,7 @@ node {
           
               // Scan all vuln levels
                 sh 'mkdir -p reports'
-                sh 'trivy repository --ignore-unfixed --vuln-type os,library --format template --template "@html.tpl" -o reports/trivyscan.html https://github.com/anjielayo/DVWA.git'
+                sh 'trivy repository https://github.com/anjielayo/DVWA.git'
                 publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
@@ -33,7 +33,14 @@ node {
 
             }
 
-
+	stage('Archery Scan'){
+		sh "docker run -it -p 8000:8000 -v http://34.134.183.218:/archerysec archerysec/archerysec:latest"
+	
+	
+	
+	}
+	
+	
 
 	
     
