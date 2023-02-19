@@ -6,9 +6,9 @@ agent any
 		    checkout scm
 		  }
 		}
-
+		def scannerHome = tool 'SonarScanner';
 		  stage('SonarQube Analysis') {
-			  def scannerHome = tool 'SonarScanner';
+			  
 			  steps{
 			    
 			    withSonarQubeEnv() {
