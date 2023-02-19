@@ -12,7 +12,7 @@ node {
   
   stage ("Dynamic Analysis - DAST with OWASP ZAP") {		
 				sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"	
-	  			publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: false, reportDir: '', reportFiles: 'report.html', reportName: 'My Report', reportTitles: '', useWrapperFileDirectly: true])
+	  			publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: '', reportFiles: 'report.html', reportName: 'HTMLReport', reportTitles: '', useWrapperFileDirectly: true])
 		
 		}
 
