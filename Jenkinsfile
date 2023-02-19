@@ -16,11 +16,11 @@ node {
 		
 		}
 
-def directory = "${env.WORKSPACE}/jenkinsproj"	
+
 stage('capture console output') {
 
   
-    
+    def directory = "${env.WORKSPACE}/jenkinsproj"	
     def logContent = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(
       Integer.parseInt(env.BUILD_NUMBER)).logFile.text
     // copy the log in the job's own workspace
