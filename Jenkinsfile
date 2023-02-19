@@ -11,7 +11,7 @@ node {
   }
   
   stage ("Dynamic Analysis - DAST with OWASP ZAP") {
-	  			sh "mkdir -p /zap/wrk"
+	  			
 				sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ -r report_html || true"	
 	  			
 		
