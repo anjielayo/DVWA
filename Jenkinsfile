@@ -54,6 +54,13 @@ pipeline {
 		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"
 		 	 }
 			}
+	    
+	    stage ("Nuclei Scan"){
+		    steps {
+		    	 sh "docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
+		    }
+	    
+	    }
 
 	   stage('Trivy Scan') {
 		   steps {
