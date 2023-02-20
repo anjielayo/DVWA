@@ -27,7 +27,7 @@ pipeline {
 	    
 	    stage('OSS and Dependency Management'){
 		    steps {
-			    sh "docker run -e GITHUB_AUTH_TOKEN = credentials('GITHUB_AUTH_TOKEN') gcr.io/openssf/scorecard:stable --repo=https://github.com/anjielayo/DVWA"
+			    sh "docker run -e GITHUB_AUTH_TOKEN=${env.GITHUB_AUTH_TOKEN} gcr.io/openssf/scorecard:stable --repo=https://github.com/anjielayo/DVWA"
 		    }
 	    }
 	    
