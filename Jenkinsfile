@@ -75,7 +75,7 @@ pipeline {
 
 		stage('Dalfox Scan') {
 			steps {
-				sh 'docker run -t hahwul/dalfox:latest /app/dalfox url http://34.134.183.218/ --report'
+				sh 'docker run -t hahwul/dalfox:latest /app/dalfox url http://34.134.183.218/'
 
 		}
 		}
