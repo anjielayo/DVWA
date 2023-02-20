@@ -25,12 +25,7 @@ pipeline {
             }
         } 
 	    
-	    stage('OSS and Dependency Management'){
-		    steps {
-			    sh "docker run -e GITHUB_AUTH_TOKEN=GITHUB_AUTH_TOKEN gcr.io/openssf/scorecard:stable --repo=https://github.com/anjielayo/DVWA"
-		    }
-	    }
-	    
+
 	  stage('SonarQube Analysis') {
 		  steps {
 		    withSonarQubeEnv('Sonarserver') {
