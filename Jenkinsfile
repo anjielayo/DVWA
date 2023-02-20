@@ -4,6 +4,7 @@ pipeline {
 		def scannerHome = tool 'SonarScanner';
 		SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
         	SEMGREP_PR_ID = "${env.CHANGE_ID}"
+		GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
 	}
     stages {
 	  stage('SCM') {
@@ -11,6 +12,16 @@ pipeline {
 		    checkout scm
 		  }
 	  }
+	    
+	    
+	   stage('GitGuardian Scan') {
+            agent {
+                docker { image 'gitguardian/ggshield:latest' }
+            }
+            steps {
+                sh 'ggshield secret scan ci'
+            }
+        } 
 	    
 	  stage('SonarQube Analysis') {
 		  steps {
