@@ -2,6 +2,8 @@ pipeline {
     agent any 
 	environment {
 		def scannerHome = tool 'SonarScanner';
+		SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
+        	SEMGREP_PR_ID = "${env.CHANGE_ID}"
 	}
     stages {
 	  stage('SCM') {
@@ -18,6 +20,13 @@ pipeline {
 	    }
 	  }
 
+	  stage('Semgrep-Scan') {
+		  steps {
+		    sh 'pip3 install semgrep'
+		    sh 'semgrep ci'
+		  }
+      }  
+	    
 	  stage ("Dynamic Analysis - DAST with OWASP ZAP") {
 		  steps {
 		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"
