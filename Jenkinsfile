@@ -25,7 +25,8 @@ pipeline {
 	    
 	    stage('OSS and Dependency Management'){
 		    steps{
-		    	sh "docker run -e gcr.io/openssf/scorecard:stable --repo=https://github.com/anjielayo/DVWA"
+		    	sh "docker pull gcr.io/openssf/scorecard:stable"
+			sh "gcr.io/openssf/scorecard:stable --repo=https://github.com/anjielayo/DVWA"
 		    }
 	    }
 	    
