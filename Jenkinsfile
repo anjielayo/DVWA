@@ -38,6 +38,14 @@ pipeline {
 		  }
       }  
 	    
+	    stage ('Chopchop Scan') {
+		    steps {
+		    	sh "docker run ghcr.io/michelin/gochopchop scan http://34.134.183.218/ -v debug"
+		    
+		    }
+	    
+	    }
+	    
 	  stage ("Dynamic Analysis - DAST with OWASP ZAP") {
 		  steps {
 		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"
