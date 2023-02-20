@@ -23,6 +23,12 @@ pipeline {
             }
         } 
 	    
+	    stage('OSS and Dependency Management'){
+		    steps{
+		    	sh "docker run -e gcr.io/openssf/scorecard:stable --repo=https://github.com/anjielayo/DVWA"
+		    }
+	    }
+	    
 	  stage('SonarQube Analysis') {
 		  steps {
 		    withSonarQubeEnv('Sonarserver') {
