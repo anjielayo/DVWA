@@ -16,7 +16,7 @@ pipeline {
 	  }
 	    
 	    
-	   stage('GitGuardian Scan') {
+	   stage('Secrets Management-GitGuardian Scan') {
             agent {
                 docker { image 'gitguardian/ggshield:latest' }
             }
@@ -26,7 +26,7 @@ pipeline {
         } 
 	    
 
-	  stage('SonarQube Analysis') {
+	  stage('SAST Analysis-SonarQube') {
 		  steps {
 		    withSonarQubeEnv('Sonarserver') {
 		      sh "${scannerHome}/bin/sonar-scanner"
@@ -41,6 +41,13 @@ pipeline {
 		  }
       }  
 	    
+	    
+	  stage ("Dynamic Analysis - OWASP ZAP") {
+		  steps {
+		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"
+		 	 }
+			}
+	    
 	    stage ('Chopchop Scan') {
 		    steps {
 		    	sh "docker run ghcr.io/michelin/gochopchop scan http://34.134.183.218/ -v debug"
@@ -49,12 +56,6 @@ pipeline {
 	    
 	    }
 	    
-	  stage ("Dynamic Analysis - DAST with OWASP ZAP") {
-		  steps {
-		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"
-		 	 }
-			}
-	    
 	    stage ("Nuclei Scan"){
 		    steps {
 		    	 sh "docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
@@ -62,7 +63,7 @@ pipeline {
 	    
 	    }
 
-	   stage('Trivy Scan') {
+	   stage('Container Scanning-Trivy Scan') {
 		   steps {
 		      // Scan all vuln levels
 			sh 'mkdir -p reports'
@@ -80,7 +81,7 @@ pipeline {
 		   }
 		    }
 
-		stage('Dalfox Scan') {
+		stage('XSS Scan-Dalfox Scan') {
 			steps {
 				sh 'docker run -t hahwul/dalfox:latest /app/dalfox url http://34.134.183.218/'
 
