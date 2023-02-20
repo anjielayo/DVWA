@@ -58,6 +58,7 @@ pipeline {
 	    
 	    stage ("Nuclei Scan"){
 		    steps {
+			 sh "ssh -v root@34.121.233.159"
 		    	 sh "docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
 		    }
 	    
