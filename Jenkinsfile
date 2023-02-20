@@ -1,6 +1,6 @@
 pipeline {
     agent any 
-	environemnt {
+	environment {
 		def scannerHome = tool 'SonarScanner';
 	}
     stages {
