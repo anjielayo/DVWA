@@ -18,8 +18,7 @@ pipeline {
 	     stage ("Nuclei Scan"){
 		    steps {
 			    sshagent(credentials: ['wazuhsshfinal']) {
-				sh "ssh root@34.121.233.159"
-		    		sh "docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
+				sh "ssh root@34.121.233.159 docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
 		    }
 		    }
 	    }
