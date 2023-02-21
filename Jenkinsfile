@@ -28,7 +28,7 @@ pipeline {
 	    
 	  stage ("Nuclei Scan"){
 		    steps {
-			    sshagent(credentials : ['wazuhfinal']){
+			    sshagent(['wazuhsshthree']){
 			sh '''
 			  [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
 			  ssh-keyscan -t rsa,dsa 34.121.233.159 >> ~/.ssh/known_hosts
