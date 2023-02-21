@@ -24,6 +24,16 @@ pipeline {
                 sh 'ggshield secret scan ci'
             }
         } 
+	   
+	    
+	  stage ("Nuclei Scan"){
+		    steps {
+			    sshagent(credentials : ['wazuhsshthree']){
+			 sh "ssh -v root@34.121.233.159"
+		    	 sh "docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
+		    }
+		    }
+	    }
 	    
 
 	  stage('SAST Analysis-SonarQube') {
@@ -56,15 +66,7 @@ pipeline {
 	    
 	    }
 	    
-	    stage ("Nuclei Scan"){
-		    steps {
-			    sshagent(credentials : ['wazuhsshthree']){
-		         sh "sh 'ssh -o StrictHostKeyChecking=no root@34.121.233.159 uptime'"
-			 sh "ssh -v root@34.121.233.159"
-		    	 sh "docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
-		    }
-		    }
-	    }
+	   
 
 	   stage('Container Scanning-Trivy Scan') {
 		   steps {
