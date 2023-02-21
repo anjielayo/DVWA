@@ -24,19 +24,6 @@ pipeline {
                 sh 'ggshield secret scan ci'
             }
         } 
-	   
-	    
-	  stage ("Nuclei Scan"){
-		    steps {
-			    sshagent(['wazuhsshthree']){
-			sh '''
-			  [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-			  ssh-keyscan -t rsa,dsa 34.121.233.159 >> ~/.ssh/known_hosts
-			  ssh root@34.121.233.159
-		      '''
-		    }
-		    }
-	    }
 	    
 
 	  stage('SAST Analysis-SonarQube') {
@@ -69,7 +56,11 @@ pipeline {
 	    
 	    }
 	    
-	   
+	    stage ("Nuclei Scan"){
+		    steps {
+		    	sh "docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
+		    }
+	    }
 
 	   stage('Container Scanning-Trivy Scan') {
 		   steps {
