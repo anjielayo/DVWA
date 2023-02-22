@@ -15,7 +15,7 @@ pipeline {
 		  }
 	  }
 	   
-	    
+
 	   stage ('Archery with ZAP'){
 		    steps {
 		  	sshagent(credentials: ['archeryssh']) {
