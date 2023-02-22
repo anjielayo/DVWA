@@ -15,7 +15,6 @@ pipeline {
 		  }
 	  }
 	   
-
 	    
      stage ('Archery with ZAP'){
 				    steps {
