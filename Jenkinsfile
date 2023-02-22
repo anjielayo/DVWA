@@ -22,7 +22,7 @@ pipeline {
               			agent any
 				    steps {
 					sshagent(credentials: ['archeryssh']) {
-						sh 'ssh -t -t root@34.122.121.166 -o StrictHostKeyChecking=no' 
+						sh 'ssh root@34.122.121.166' 
 						sh 'pip install archerysec-cli --force' 
 						sh 'mkdir /tmp/archerysec-scans-report' 
 						sh 'archerysec-cli --help'
