@@ -19,7 +19,7 @@ pipeline {
 	    stage ('Archery with ZAP'){
 		    steps {
 		  	sshagent(credentials: ['archeryfinal']) {
-		    		sh 'ssh -t -t anjolaoluwamo@34.122.121.166 -o StrictHostKeyChecking=no "python3.9 --version"'
+		    		sh 'ssh -t -t anjolaoluwamo@34.122.121.166 -o StrictHostKeyChecking=no "archerysec-cli --help"'
 		    }
 	    }
 	    } 
