@@ -20,8 +20,7 @@ pipeline {
 				    steps {
 					
 						sh 'pip install archerysec-cli --force'
-					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli -h http://35.223.19.181:8000 -t vEMx30lh3bQQ0mqgIosmaQrCPGqWIAy5Be29ESJXaUx8O_f9dWrgvn4EY8ahCVFY --cicd_id=c7a33638-927e-4856-bdca-5c66c872c27a --project=25b38dd2-49dc-4ef8-846a-633764d02e4a --zap-base-line-scan --report_path=/tmp/archerysec-scans-report/'
-		    }
+					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli --help'
 		    
 	    }
 	    
