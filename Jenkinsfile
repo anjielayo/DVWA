@@ -24,7 +24,7 @@ pipeline {
 					sshagent(credentials: ['archeryssh']) {
 						sh 'ssh root@34.122.121.166' 
 						sh 'pip install archerysec-cli --force'  
-						sh 'archerysec-cli --help'
+						sh 'archerysec-cli -h http://34.122.121.166:8000 -t jFY9lOmijSQeZ2LkOudWojxjlVoU4ANgIyHqncTBaqCoXf278zN3NbAEwVobsh0y --cicd_id=a97ef89d-6090-4bc9-a191-d23f8dc23018 --project=8534de60-f2a5-4d02-9d1c-29df5683bc62 --zap-base-line-scan --report_path=$(pwd)'
 		    }
 		    }
 	    }
