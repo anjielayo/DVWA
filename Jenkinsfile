@@ -16,10 +16,10 @@ pipeline {
 	  }
 	   
 
-	   stage ('Archery with ZAP'){
+	    stage ('Archery with ZAP'){
 		    steps {
 		  	sshagent(credentials: ['archeryssh']) {
-		    		sh 'ssh root@34.122.121.166' 
+		    		sh 'ssh root@34.122.121.166 archerysec-cli -h http://34.122.121.166:8000 -t v1ARGjtGPbMNZIIMCT7EK0yryuyVpLES3dWSusHBuqi1m1ch6rBXIywjFk-Yv5VN --cicd_id=72e16a6c-fcb3-4505-9da4-491d442e7377 --project=83980117-064a-44b4-8793-c1f1b6e220cf --zap-base-line-scan --report_path=/tmp/archerysec-scans-report/'
 		    }
 	    }
 	    } 
