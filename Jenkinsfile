@@ -25,7 +25,7 @@ pipeline {
 	    } 
 	    
 	    
-	   
+	
 	   stage ("Nuclei Scan"){
 		    steps {
 			    sshagent(credentials: ['wazuhsshfinal']) {
