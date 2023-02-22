@@ -16,20 +16,16 @@ pipeline {
 	  }
 	   
 
-	  stage ('Archery with ZAP'){
-		    parallel{
-			    stage('OWASP ZAP First') {
-              			agent any
+     stage ('Archery with ZAP'){
 				    steps {
-					sshagent(credentials: ['archeryssh']) {
-						sh 'ssh root@34.122.121.166' 
+					
 						sh 'pip install archerysec-cli --force'  
-						sh 'archerysec-cli -h http://34.122.121.166:8000 -t jFY9lOmijSQeZ2LkOudWojxjlVoU4ANgIyHqncTBaqCoXf278zN3NbAEwVobsh0y --cicd_id=a97ef89d-6090-4bc9-a191-d23f8dc23018 --project=8534de60-f2a5-4d02-9d1c-29df5683bc62 --zap-base-line-scan --report_path=$(pwd)'
+					    	sh 'mkdir /tmp/archerysec-scans-report'
+						sh 'archerysec-cli -h http://35.223.19.181:8000 -t vEMx30lh3bQQ0mqgIosmaQrCPGqWIAy5Be29ESJXaUx8O_f9dWrgvn4EY8ahCVFY --cicd_id=c7a33638-927e-4856-bdca-5c66c872c27a --project=25b38dd2-49dc-4ef8-846a-633764d02e4a --zap-base-line-scan --report_path=/tmp/archerysec-scans-report/'
 		    }
-		    }
+		    
 	    }
-	    } 
-	    }
+	    
 
   
 	    
