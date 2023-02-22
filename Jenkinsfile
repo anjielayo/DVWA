@@ -21,8 +21,8 @@ pipeline {
 			    stage('OWASP ZAP First') {
               			agent any
 				    steps {
-					sshagent(credentials: ['archeryfinal']) {
-						sh 'ssh -t -t anjolaoluwamo@34.122.121.166 -o StrictHostKeyChecking=no' 
+					sshagent(credentials: ['archeryssh']) {
+						sh 'ssh -t -t root@34.122.121.166 -o StrictHostKeyChecking=no' 
 						sh 'pip install archerysec-cli --force' 
 						sh 'mkdir /tmp/archerysec-scans-report' 
 						sh 'archerysec-cli --help'
