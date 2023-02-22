@@ -23,8 +23,7 @@ pipeline {
 				    steps {
 					sshagent(credentials: ['archeryssh']) {
 						sh 'ssh root@34.122.121.166' 
-						sh 'pip install archerysec-cli --force' 
-						sh 'mkdir /tmp/archerysec-scans-report' 
+						sh 'pip install archerysec-cli --force'  
 						sh 'archerysec-cli --help'
 		    }
 		    }
