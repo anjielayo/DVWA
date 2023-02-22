@@ -23,7 +23,7 @@ pipeline {
 					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli --help'
 		    
 	    }
-	    
+     }
 
   
 	    
