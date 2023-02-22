@@ -14,6 +14,16 @@ pipeline {
 		    checkout scm
 		  }
 	  }
+	   
+	    
+	   stage ('Archery with ZAP'){
+		    steps {
+		  	sshagent(credentials: ['archeryssh']) {
+		    		sh 'ssh root@34.122.121.166 archerysec-cli -h http://34.122.121.166:8000 -t ZNQIhIDJ-3_HEz46VVSWYHWt78J42GIqYZ0TNahRk3un1LlujxWXUIfAPNH1INxR --cicd_id=9cf51c0d-007e-4771-ba01-ef3eebd0d844 --project=98cfaf2c-b696-4217-97c4-304d2870fb52 --zap-base-line-scan --report_path=/tmp/archerysec-scans-report/'
+		    }
+	    }
+	    } 
+	    
 	    
 	   stage ("Nuclei Scan"){
 		    steps {
