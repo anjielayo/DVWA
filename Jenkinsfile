@@ -15,7 +15,17 @@ pipeline {
 		  }
 	  }
 	   
- 
+ 	
+	    stage ('Archery with ZAP'){
+				    steps {
+					sshagent(credentials: ['samplarch']) {
+						sh 'ssh root@34.71.218.82' 
+						sh 'pip install archerysec-cli --force'  
+					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli -h http://34.71.218.82:8000 -t P1V7INERQvkUuGJqfe9pG5xx2aK-sz7Uw0JrYI35cqFmedXLQ9_SRbkzvKuiA_ZI --cicd_id=fb756c5d-7c47-40e4-9842-ccd83b01744f --project=f72d5795-5afb-4bca-8209-6192709a18e7 --zap-base-line-scan --upload --report_path=/tmp/archerysec-scans-report'
+		    
+	    }
+     }
+     }
 	
 	   stage ("Nuclei Scan"){
 		    steps {
