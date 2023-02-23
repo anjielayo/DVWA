@@ -21,7 +21,7 @@ pipeline {
 					sshagent(credentials: ['samplarch']) {
 						sh 'ssh root@34.71.218.82' 
 						sh 'pip install archerysec-cli --force'  
-					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli -h http://34.71.218.82:8000 -t --cicd_id=fb756c5d-7c47-40e4-9842-ccd83b01744f --project=f72d5795-5afb-4bca-8209-6192709a18e7 --zap-base-line-scan'
+					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli -h http://34.71.218.82:8000 -t --cicd_id=fb756c5d-7c47-40e4-9842-ccd83b01744f --project=f72d5795-5afb-4bca-8209-6192709a18e7 --zap-base-line-scan http://34.134.183.218/'
 		    
 	    }
      }
