@@ -19,7 +19,7 @@ pipeline {
 				    steps {
 					sshagent(credentials: ['samplarch']) {
 						sh 'ssh root@34.71.218.82' 
-					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli -s --scanner dependencycheck --target http://34.134.183.218/'
+					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli --scanner dependencycheck --target http://34.134.183.218/'
 		    
 	    }
      }
