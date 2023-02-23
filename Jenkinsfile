@@ -14,19 +14,6 @@ pipeline {
 		    checkout scm
 		  }
 	  }
-	   
- 	stage ('Archery with ZAP'){
-				    steps {
-					
-						sh 'docker pull mkarakas/archerysec-cli' 
-					    	sh 'docker run -t mkarakas/archerysec-cli:latest archerysec-cli -h http://34.71.218.82:8000 -t P1V7INERQvkUuGJqfe9pG5xx2aK-sz7Uw0JrYI35cqFmedXLQ9_SRbkzvKuiA_ZI --cicd_id=5d976582-6adc-4361-8dba-44b768f6e337 --project=2d9e3cd8-0fb4-4870-9773-b029ada29a4b --dependency-check --report_path=$(pwd)'
-		    
-	    }
-     }
-     
-	   
-	
-	  
 	    
 	    
 	   stage('Secrets Management-GitGuardian Scan') {
