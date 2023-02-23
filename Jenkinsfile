@@ -19,7 +19,7 @@ pipeline {
 				    steps {
 					sshagent(credentials: ['samplarch']) {
 						sh 'ssh root@34.71.218.82' 
-					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli -h http://34.71.218.82 --target http://34.134.183.218 --scanner zap_scan'
+					    	sh '/var/lib/jenkins/.local/bin/archerysec-cli -h http://34.71.218.82:8000 --target http://34.134.183.218 --scanner zap_scan'
 		    
 	    }
      }
