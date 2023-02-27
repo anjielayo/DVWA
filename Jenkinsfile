@@ -44,7 +44,7 @@ pipeline {
 	    
 	  stage ("Dynamic Analysis - OWASP ZAP") {
 		  steps {
-		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.vacasa.com/ || true"
+		  	sh "docker run -t owasp/zap2docker-stable zap-full-scan.py -t https://www.vacasa.com/ || true"
 		 	 }
 			}
 	    
@@ -68,7 +68,7 @@ pipeline {
 		   steps {
 		      // Scan all vuln levels
 			sh 'mkdir -p reports'
-			sh 'trivy repo https://www.vacasa.com/'
+			sh 'trivy repo http://34.134.183.218/'
 			publishHTML target : [
 			    allowMissing: true,
 			    alwaysLinkToLastBuild: true,
