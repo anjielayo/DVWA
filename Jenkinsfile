@@ -8,6 +8,7 @@ pipeline {
 		GITHUB_AUTH_TOKEN = credentials('GITHUB_AUTH_TOKEN')
 		
 	}
+	
     stages {
 	  stage('SCM') {
 		  steps {
