@@ -30,7 +30,7 @@ pipeline {
 	  stage('Semgrep-Scan') {
 		  steps {
 		    sh 'pip3 install semgrep'
-		    sh 'semgrep ci'
+		    sh '/home/anjolaoluwamo/.local/bin/semgrep ci'
 		  }
       }  
 	    
