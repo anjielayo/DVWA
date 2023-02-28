@@ -15,21 +15,9 @@ pipeline {
 		  }
 	  }
 	    
-	stage('Secrets Management-GitGuardian Scan') {
-            agent {
-                docker { image 'gitguardian/ggshield:latest' }
-            }
-            steps {
-                sh 'ggshield secret scan ci || true'
-            }
-        } 
 
-	    stage('Semgrep-Scan') {
-		  steps {
-		    sh 'pip3 install semgrep'
-		    sh 'semgrep ci'
-		  }
-      } 
+
+
 	  
 
 	  stage('SAST Analysis-SonarQube') {
@@ -41,7 +29,12 @@ pipeline {
 	  }
 
 
-	    
+		    stage('Semgrep-Scan') {
+		  steps {
+		    sh 'pip3 install semgrep'
+		    sh 'semgrep ci'
+		  }
+      }     
 	    
 	  stage ("Dynamic Analysis - OWASP ZAP") {
 		  steps {
