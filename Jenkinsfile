@@ -15,8 +15,24 @@ pipeline {
 		  }
 	  }
 	    
+	    stage('Secrets Management-GitGuardian Scan') {
+            agent {
+                docker { image 'gitguardian/ggshield:latest' }
+            }
+		environment {
+                GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
+            }
+            steps {
+                sh 'ggshield secret scan ci'
+            }
+        } 
 
-	    
+	    stage('Semgrep-Scan') {
+		  steps {
+		    sh 'pip3 install semgrep'
+		    sh 'semgrep ci'
+		  }
+      } 
 	    
 
 	  stage('SAST Analysis-SonarQube') {
