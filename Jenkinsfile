@@ -19,6 +19,9 @@ pipeline {
 	stage('Container Scanning-Trivy Scan') {
 		   steps {
 		      // Scan all vuln levels
+			sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.18.3'
+                	sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
+'
 			sh 'mkdir -p reports'
 			sh 'trivy repo https://github.com/knqyf263/trivy-ci-test --format template --template "@html.tpl" -o reports/trivyscan.html'
 			publishHTML target : [
