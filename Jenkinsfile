@@ -15,7 +15,6 @@ pipeline {
 		  }
 	  }
 	    
-	    
 	stage('Container Scanning-Trivy Scan') {
 		   steps {
 		      // Scan all vuln levels
