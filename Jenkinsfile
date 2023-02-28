@@ -8,7 +8,6 @@ pipeline {
 		GITHUB_AUTH_TOKEN = credentials('GITHUB_AUTH_TOKEN')
 		
 	}
-	
     stages {
 	  stage('SCM') {
 		  steps {
@@ -45,13 +44,13 @@ pipeline {
 	    
 	  stage ("Dynamic Analysis - OWASP ZAP") {
 		  steps {
-		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.vacasa.com/ || true"
+		  	sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://34.134.183.218/ || true"
 		 	 }
 			}
 	    
 	    stage ('Chopchop Scan') {
 		    steps {
-		    	sh "docker run ghcr.io/michelin/gochopchop scan https://www.vacasa.com/ -v debug"
+		    	sh "docker run ghcr.io/michelin/gochopchop scan http://34.134.183.218/ -v debug"
 		    
 		    }
 	    
@@ -60,7 +59,7 @@ pipeline {
 	     stage ("Nuclei Scan"){
 		    steps {
 			    sshagent(credentials: ['wazuhsshfinal']) {
-				sh "ssh root@34.121.233.159 docker run projectdiscovery/nuclei:latest -u https://www.vacasa.com/"
+				sh "ssh root@34.121.233.159 docker run projectdiscovery/nuclei:latest -u http://34.134.183.218/"
 		    }
 		    }
 	    }
@@ -69,7 +68,7 @@ pipeline {
 		   steps {
 		      // Scan all vuln levels
 			sh 'mkdir -p reports'
-			sh 'trivy repo http://34.134.183.218/'
+			sh 'trivy repo https://github.com/anjielayo/DVWA'
 			publishHTML target : [
 			    allowMissing: true,
 			    alwaysLinkToLastBuild: true,
@@ -85,7 +84,7 @@ pipeline {
 
 		stage('XSS Scan-Dalfox Scan') {
 			steps {
-				sh 'docker run -t hahwul/dalfox:latest /app/dalfox url https://www.vacasa.com/'
+				sh 'docker run -t hahwul/dalfox:latest /app/dalfox url http://34.134.183.218/'
 
 		}
 		}
