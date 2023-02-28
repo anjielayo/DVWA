@@ -15,23 +15,7 @@ pipeline {
 		  }
 	  }
 	    
-	stage('Container Scanning-Trivy Scan') {
-		   steps {
-		      // Scan all vuln levels
-			sh 'mkdir -p reports'
-			sh 'trivy repo https://github.com/anjielayo/DVWA'
-			publishHTML target : [
-			    allowMissing: false,
-			    alwaysLinkToLastBuild: true,
-			    keepAll: true,
-			    reportDir: 'reports',
-			    reportFiles: 'trivyscan.html',
-			    reportName: 'Trivy Scan',
-			    reportTitles: 'Trivy Scan'
-			]
-
-		   }
-		    }
+	
 	    
 	    
          stage('Secrets Management-GitGuardian Scan') {
@@ -85,8 +69,26 @@ pipeline {
 		    
 		    }
 	    }
+	    
 
-	   
+	   stage('Container Scanning-Trivy Scan') {
+		   steps {
+		      // Scan all vuln levels
+			sh 'mkdir -p reports'
+			sh 'trivy repo https://github.com/anjielayo/DVWA'
+			publishHTML target : [
+			    allowMissing: false,
+			    alwaysLinkToLastBuild: true,
+			    keepAll: true,
+			    reportDir: 'reports',
+			    reportFiles: 'trivyscan.html',
+			    reportName: 'Trivy Scan',
+			    reportTitles: 'Trivy Scan'
+			]
+
+		   }
+		    }
+	    
 
 		stage('XSS Scan-Dalfox Scan') {
 			steps {
