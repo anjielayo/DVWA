@@ -15,7 +15,12 @@ pipeline {
 		  }
 	  }
 	    
-	    
+	     stage('Secrets Management-GitGuardian Scan') {
+            
+            steps {
+                sh 'docker run -t gitguardian/ggshield ggshield secret scan ci'
+            }
+        }  
 
 	    stage('Semgrep-Scan') {
 		  steps {
@@ -23,14 +28,7 @@ pipeline {
 		    sh 'semgrep ci'
 		  }
       } 
-	   stage('Secrets Management-GitGuardian Scan') {
-            agent {
-                docker { image 'gitguardian/ggshield:latest' }
-            }
-            steps {
-                sh 'ggshield secret scan ci'
-            }
-        }  
+	  
 
 	  stage('SAST Analysis-SonarQube') {
 		  steps {
