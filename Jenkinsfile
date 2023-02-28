@@ -16,7 +16,9 @@ pipeline {
 	  }
 	    
 	     stage('Secrets Management-GitGuardian Scan') {
-            
+            environment {
+                GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
+            }
             steps {
                 sh 'docker run -t gitguardian/ggshield ggshield secret scan ci'
             }
