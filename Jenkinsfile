@@ -15,14 +15,13 @@ pipeline {
 		  }
 	  }
 	    
-	     stage('Secrets Management-GitGuardian Scan') {
-            environment {
-                GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
-            }
+	stage('Secrets Management-GitGuardian Scan') {
+            
             steps {
-                sh 'docker run -t gitguardian/ggshield ggshield secret scan ci'
+		sh 'docker pull gitguardian/ggshield'
+                sh 'ggshield secret scan ci'
             }
-        }  
+        } 
 
 	    stage('Semgrep-Scan') {
 		  steps {
