@@ -15,7 +15,26 @@ pipeline {
 		  }
 	  }
 	    
+	    
+	stage('Container Scanning-Trivy Scan') {
+		   steps {
+		      // Scan all vuln levels
+			sh 'mkdir -p reports'
+			sh 'trivy repo https://github.com/knqyf263/trivy-ci-test,library --format template --template "@html.tpl" -o reports/trivyscan.html ./nodej'
+			publishHTML target : [
+			    allowMissing: true,
+			    alwaysLinkToLastBuild: true,
+			    keepAll: true,
+			    reportDir: 'reports',
+			    reportFiles: 'trivyscan.html',
+			    reportName: 'Trivy Scan',
+			    reportTitles: 'Trivy Scan'
+			]
 
+		   }
+		    }
+	    
+	    
          stage('Secrets Management-GitGuardian Scan') {
             agent {
                 docker { image 'gitguardian/ggshield:latest'
@@ -68,23 +87,7 @@ pipeline {
 		    }
 	    }
 
-	   stage('Container Scanning-Trivy Scan') {
-		   steps {
-		      // Scan all vuln levels
-			sh 'mkdir -p reports'
-			sh 'trivy repo https://github.com/knqyf263/trivy-ci-test'
-			publishHTML target : [
-			    allowMissing: true,
-			    alwaysLinkToLastBuild: true,
-			    keepAll: true,
-			    reportDir: 'reports',
-			    reportFiles: 'trivyscan.html',
-			    reportName: 'Trivy Scan',
-			    reportTitles: 'Trivy Scan'
-			]
-
-		   }
-		    }
+	   
 
 		stage('XSS Scan-Dalfox Scan') {
 			steps {
