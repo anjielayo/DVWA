@@ -19,7 +19,7 @@ pipeline {
 		   steps {
 		      // Scan all vuln levels
 			sh 'mkdir -p reports'
-			sh 'trivy repo https://github.com/knqyf263/trivy-ci-test'
+			sh 'trivy repo https://github.com/anjielayo/DVWA'
 			publishHTML target : [
 			    allowMissing: false,
 			    alwaysLinkToLastBuild: true,
