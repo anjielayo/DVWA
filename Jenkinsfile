@@ -16,13 +16,15 @@ pipeline {
 	  }
 	    
 
-        stage('GitGuardian Scan') {
-		
-		    docker.image('gitguardian/ggshield:latest').inside {
+         stage('Secrets Management-GitGuardian Scan') {
+            agent {
+                docker { image 'gitguardian/ggshield:latest' }
+            }
+            steps {
                 sh 'ggshield secret scan ci'
-            
-        }
-	}
+            }
+        } 
+	    
 
 
 	  
