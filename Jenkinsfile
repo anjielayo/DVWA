@@ -18,7 +18,7 @@ pipeline {
 
         stage('GitGuardian Scan') {
 		steps{
-		    docker.image('gitguardian/ggshield:latest') {
+		    docker.image('gitguardian/ggshield:latest').inside {
                 sh 'ggshield secret scan ci'
             }
         }
