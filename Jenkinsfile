@@ -5,7 +5,7 @@ pipeline {
 		SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
         	SEMGREP_PR_ID = "${env.CHANGE_ID}"
 		GITGUARDIAN_API_KEY = credentials('gitguardian-api-key')
-		GITHUB_AUTH_TOKEN = credentials('GITHUB_AUTH_TOKEN')
+	
 		
 	}
     stages {
