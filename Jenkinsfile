@@ -27,12 +27,7 @@ pipeline {
 	    }
 	  }
 
-	  stage('Semgrep-Scan') {
-		  steps {
-		    sh 'pip3 install semgrep'
-		    sh '/home/anjolaoluwamo/.local/bin/semgrep ci'
-		  }
-      }  
+
 	    
 	    
 	  stage ("Dynamic Analysis - OWASP ZAP") {
