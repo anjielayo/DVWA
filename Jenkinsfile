@@ -18,7 +18,7 @@ pipeline {
 
          stage('Secrets Management-GitGuardian Scan') {
             agent {
-                any { image 'gitguardian/ggshield:latest' }
+                any { image 'docker pull gitguardian/ggshield:latest' }
             }
             steps {
                 sh 'ggshield secret scan ci'
